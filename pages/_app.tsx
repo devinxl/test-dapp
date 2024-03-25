@@ -5,28 +5,28 @@ import type { AppProps } from 'next/app';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { WagmiProvider } from 'wagmi';
 import {
-  arbitrum,
-  base,
-  mainnet,
-  optimism,
-  polygon,
-  sepolia,
-  zora,
+  bsc,
+  bscTestnet,
 } from 'wagmi/chains';
 import { getDefaultConfig, RainbowKitProvider } from '@rainbow-me/rainbowkit';
+import { bnbGreenfieldTestnet, bscGreenfield } from '../config/chains';
+import { trustWallet, metaMaskWallet, rainbowWallet, } from '@rainbow-me/rainbowkit/wallets';
+
+const trustWalletGroup = {
+  groupName: 'Custom',
+  wallets: [trustWallet, metaMaskWallet, rainbowWallet]
+};
 
 const config = getDefaultConfig({
   appName: 'RainbowKit App',
   projectId: 'YOUR_PROJECT_ID',
   chains: [
-    mainnet,
-    polygon,
-    optimism,
-    arbitrum,
-    base,
-    zora,
-    ...(process.env.NEXT_PUBLIC_ENABLE_TESTNETS === 'true' ? [sepolia] : []),
+    bscTestnet,
+    bsc,
+    bscGreenfield,
+    bnbGreenfieldTestnet,
   ],
+  wallets: [trustWalletGroup],
   ssr: true,
 });
 

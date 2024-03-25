@@ -100,3 +100,9 @@
     flex-direction: column;
   }
 }
+
+.operationContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
